@@ -10,12 +10,9 @@ export default cors(router(
   get('/', async (req, res) => {
     const results = await People.find({})
     await send(res, 200, results)
-  }),
+  }), 
   post('/', async (req, res) => {
     console.log(`I'm called`)
-
-    // throw Error('Blah')
-    const person = await json(req)
-    const result = await People.insert(person)
+    const result = await People.insert(req.body)
     return send(res, 201, result)
   })))
